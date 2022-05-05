@@ -6,7 +6,7 @@
 /*   By: msotelo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 16:04:26 by msotelo-          #+#    #+#             */
-/*   Updated: 2022/05/04 23:05:07 by msotelo-         ###   ########.fr       */
+/*   Updated: 2022/05/05 17:04:46 by msotelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef SO_LONG_H
@@ -50,6 +50,7 @@ void	draw_hero(t_map *map);
 void	locate_hero(t_map *map);
 void	close_window(t_map *map);
 void	free_map(t_map *map, int i);
+void	check_pointer(t_map *map);
 int		draw_map1(t_map *map);
 int		draw_map2(t_map *map, int x, int y, int c);
 int		key_hook_movement(int keycode, t_map *map);

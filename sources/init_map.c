@@ -6,10 +6,31 @@
 /*   By: msotelo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:00:40 by msotelo-          #+#    #+#             */
-/*   Updated: 2022/05/05 15:09:09 by msotelo-         ###   ########.fr       */
+/*   Updated: 2022/05/05 17:09:11 by msotelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
+
+void	check_pointer(t_map *map)
+{
+	int x;
+	
+	x = 0;
+	if (map->hero == 0x0 || map->floor == 0x0 || map->wall == 0x0 || 
+		map->exit == 0x0 || map->colec == 0x0)
+	{
+		while (map->map[x])
+		{
+			free(map->map[x]);
+			x++;
+		}
+		free(map->map);
+		printf("Error!\n Access denied\n");
+		exit(EXIT_FAILURE);
+	}
+	else
+		return ;
+}
 
 void	locate_hero(t_map *map)
 {
@@ -98,6 +119,7 @@ void	init_map(t_map *map)
 	map->wall = mlx_xpm_file_to_image(map->mlx, path[2], &width, &height);
 	map->colec = mlx_xpm_file_to_image(map->mlx, path[3], &width, &height);
 	map->exit = mlx_xpm_file_to_image(map->mlx, path[4], &width, &height);
+	check_pointer(map);
 	locate_hero(map);
 	map->c = draw_map1(map);
 	draw_hero(map);
