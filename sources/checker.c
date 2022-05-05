@@ -6,7 +6,7 @@
 /*   By: msotelo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 18:29:08 by msotelo-          #+#    #+#             */
-/*   Updated: 2022/05/04 11:25:03 by msotelo-         ###   ########.fr       */
+/*   Updated: 2022/05/05 15:17:42 by msotelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -95,28 +95,28 @@ int	check_map2(char	*map_name)
 int	check_map1(char *map_name, t_map *map, int i, int fd)
 {
 	int		check;
-	size_t	size;
+	size_t	s;
 
 	i = check_map2(map_name);
-	if (i == 0)
+	if (i == 0 || i > 44)
 		return (0);
 	fd = open(map_name, O_RDONLY);
 	map->map = (char **)malloc(sizeof(char *) * i);
 	map->map[0] = get_next_line(fd);
-	size = ft_strlen(map->map[0]);
+	s = ft_strlen(map->map[0]);
 	i = 0;
 	while (map->map[i++] != NULL)
 	{
 		map->map[i] = get_next_line(fd);
-		if (size != ft_strlen(map->map[i]) && map->map[i] != NULL)
+		if ((s != ft_strlen(map->map[i]) && map->map[i] != NULL) || s > 81)
 		{
 			free_map(map, i);
 			return (0);
 		}
 	}
 	close(fd);
-	check = check_map3(map->map, (int)(size - 2), (i - 2));
-	map->w = size - 1;
+	check = check_map3(map->map, (int)(s - 2), (i - 2));
+	map->w = s - 1;
 	map->h = i - 1;
 	return (check);
 }
