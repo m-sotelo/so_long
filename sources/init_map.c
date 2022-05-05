@@ -6,18 +6,18 @@
 /*   By: msotelo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:00:40 by msotelo-          #+#    #+#             */
-/*   Updated: 2022/05/05 17:09:11 by msotelo-         ###   ########.fr       */
+/*   Updated: 2022/05/05 17:14:48 by msotelo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
 
 void	check_pointer(t_map *map)
 {
-	int x;
-	
+	int	x;
+
 	x = 0;
-	if (map->hero == 0x0 || map->floor == 0x0 || map->wall == 0x0 || 
-		map->exit == 0x0 || map->colec == 0x0)
+	if (map->hero == 0x0 || map->floor == 0x0 || map->wall == 0x0
+		|| map->exit == 0x0 || map->colec == 0x0)
 	{
 		while (map->map[x])
 		{
@@ -25,7 +25,7 @@ void	check_pointer(t_map *map)
 			x++;
 		}
 		free(map->map);
-		printf("Error!\n Access denied\n");
+		printf("Error!\nAccess denied\n");
 		exit(EXIT_FAILURE);
 	}
 	else
